@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | LearnSpark</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="dashboard-body">
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span> LearnSpark
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="dashboard.html" class="active-link">Dashboard</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <div class="dash-user">
+        <div class="dash-avatar">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <div>
+          <strong id="dash-username">Learner</strong>
+          <span>Student</span>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <a href="#overview"   class="dash-link active" onclick="showTab('overview',this)">
+          <i class="fas fa-th-large"></i> Overview
+        </a>
+        <a href="#analytics"  class="dash-link" onclick="showTab('analytics',this)">
+          <i class="fas fa-chart-bar"></i> Analytics
+        </a>
+        <a href="#badges"     class="dash-link" onclick="showTab('badges',this)">
+          <i class="fas fa-medal"></i> Badges
+        </a>
+        <a href="#mycourses"  class="dash-link" onclick="showTab('mycourses',this)">
+          <i class="fas fa-book-open"></i> My Courses
+        </a>
+        <a href="index.html#courses" class="dash-link">
+          <i class="fas fa-plus-circle"></i> Browse Courses
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+
+      <!-- ---- OVERVIEW TAB ---- -->
+      <div id="tab-overview" class="dash-tab active">
+
+        <div class="dash-header">
+          <div>
+            <h1>Good <span id="time-greeting">Morning</span>! 👋</h1>
+            <p>Here's your learning summary for today.</p>
+          </div>
+          <div class="streak-display">
+            <i class="fas fa-fire"></i>
+            <div>
+              <strong id="streak-count">0</strong>
+              <span>Day Streak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="qs-card">
+            <div class="qs-icon" style="background:rgba(168,85,247,0.15);color:#a855f7;">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <div>
+              <strong id="total-lessons">0</strong>
+              <span>Lessons Done</span>
+            </div>
+          </div>
+          <div class="qs-card">
+            <div class="qs-icon" style="background:rgba(34,197,94,0.15);color:#22c55e;">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div>
+              <strong id="courses-enrolled">0</strong>
+              <span>Courses Enrolled</span>
+            </div>
+          </div>
+          <div class="qs-card">
+            <div class="qs-icon" style="background:rgba(245,158,11,0.15);color:#f59e0b;">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div>
+              <strong id="hours-learned">0h</strong>
+              <span>Hours Learned</span>
+            </div>
+          </div>
+          <div class="qs-card">
+            <div class="qs-icon" style="background:rgba(239,68,68,0.15);color:#ef4444;">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div>
+              <strong id="badges-earned">0</strong>
+              <span>Badges Earned</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mood Picker -->
+        <div class="dash-card">
+          <h3 class="card-title">
+            <i class="fas fa-smile"></i> How are you feeling today?
+          </h3>
+          <div class="mood-row">
+            <button class="mood-pill" onclick="dashMood(this,'focused')"   data-mood="focused">   🎯 Focused</button>
+            <button class="mood-pill" onclick="dashMood(this,'motivated')" data-mood="motivated"> 🚀 Motivated</button>
+            <button class="mood-pill" onclick="dashMood(this,'tired')"     data-mood="tired">     😴 Tired</button>
+            <button class="mood-pill" onclick="dashMood(this,'stressed')"  data-mood="stressed">  😤 Stressed</button>
+          </div>
+          <div id="dash-mood-result" class="dash-mood-result hidden"></div>
+        </div>
+
+        <!-- In-Progress Courses -->
+        <div class="dash-card">
+          <h3 class="card-title">
+            <i class="fas fa-spinner"></i> Continue Learning
+          </h3>
+          <div id="in-progress-list" class="progress-list">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- Weekly Activity -->
+        <div class="dash-card">
+          <h3 class="card-title">
+            <i class="fas fa-calendar-week"></i> This Week's Activity
+          </h3>
+          <div class="week-chart" id="week-chart">
+            <!-- bars injected by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ---- ANALYTICS TAB ---- -->
+      <div id="tab-analytics" class="dash-tab">
+        <h1>Learning <span>Analytics</span></h1>
+        <p class="tab-sub">Track your growth over time.</p>
+
+        <div class="analytics-grid">
+
+          <div class="dash-card">
+            <h3 class="card-title"><i class="fas fa-chart-pie"></i> Subject Breakdown</h3>
+            <div class="subject-bars" id="subject-bars">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <div class="dash-card">
+            <h3 class="card-title"><i class="fas fa-star"></i> Quiz Performance</h3>
+            <div class="quiz-stats" id="quiz-stats">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <div class="dash-card full-width">
+            <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Monthly Activity Heatmap</h3>
+            <div class="heatmap" id="heatmap">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ---- BADGES TAB ---- -->
+      <div id="tab-badges" class="dash-tab">
+        <h1>My <span>Badges</span></h1>
+        <p class="tab-sub">Achievements you've unlocked on your learning journey.</p>
+        <div class="badges-grid" id="badges-grid">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+      <!-- ---- MY COURSES TAB ---- -->
+      <div id="tab-mycourses" class="dash-tab">
+        <h1>My <span>Courses</span></h1>
+        <p class="tab-sub">All courses you're enrolled in.</p>
+        <div class="my-courses-list" id="my-courses-list">
+          <!-- injected by JS -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

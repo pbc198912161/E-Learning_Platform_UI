@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Detail | LearnSpark</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/course.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span> LearnSpark
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- COURSE HERO -->
+  <div class="course-hero" id="course-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <a href="index.html#courses">Courses</a>
+        <i class="fas fa-chevron-right"></i>
+        <span id="course-title-breadcrumb">Course</span>
+      </div>
+      <div class="course-hero-content">
+        <div class="course-hero-left">
+          <span class="course-category-tag" id="course-cat-tag">Web Dev</span>
+          <h1 id="course-title">Course Title</h1>
+          <p id="course-desc">Course description goes here.</p>
+          <div class="course-meta">
+            <span><i class="fas fa-book-open"></i> <span id="course-lessons">0</span> Lessons</span>
+            <span><i class="fas fa-clock"></i> <span id="course-duration">0h</span></span>
+            <span><i class="fas fa-signal"></i> <span id="course-level">Beginner</span></span>
+            <span><i class="fas fa-star" style="color:#f59e0b;"></i> <span id="course-rating">4.8</span></span>
+          </div>
+          <div class="course-hero-actions">
+            <button class="btn-primary" onclick="enrollCourse()" id="enroll-btn">
+              Enroll Now — Free
+            </button>
+            <button class="btn-ghost" onclick="showRoadmap()">
+              <i class="fas fa-route"></i> View Roadmap
+            </button>
+          </div>
+        </div>
+        <div class="course-hero-right">
+          <div class="course-progress-card" id="course-progress-card">
+            <div class="cp-header">Your Progress</div>
+            <div class="cp-circle">
+              <svg viewBox="0 0 100 100">
+                <circle class="cp-bg"   cx="50" cy="50" r="42"/>
+                <circle class="cp-fill" cx="50" cy="50" r="42" id="cp-fill-circle"/>
+              </svg>
+              <span id="cp-pct">0%</span>
+            </div>
+            <p id="cp-text">0 of 0 lessons done</p>
+            <a href="lesson.html" id="continue-btn" class="btn-primary" style="width:100%;text-align:center;margin-top:1rem;">
+              Start Learning →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="course-main container">
+
+    <!-- TABS -->
+    <div class="course-tabs">
+      <button class="ctab active" onclick="showCourseTab('roadmap',this)">
+        <i class="fas fa-route"></i> Learning Roadmap
+      </button>
+      <button class="ctab" onclick="showCourseTab('curriculum',this)">
+        <i class="fas fa-list"></i> Curriculum
+      </button>
+      <button class="ctab" onclick="showCourseTab('overview',this)">
+        <i class="fas fa-info-circle"></i> Overview
+      </button>
+    </div>
+
+    <!-- ROADMAP TAB -->
+    <div id="ctab-roadmap" class="course-tab-panel active">
+      <h3 class="panel-title">📍 Your Learning Roadmap</h3>
+      <p class="panel-sub">Complete each node to unlock the next. Your journey mapped out.</p>
+      <div class="roadmap-wrap" id="roadmap-wrap">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- CURRICULUM TAB -->
+    <div id="ctab-curriculum" class="course-tab-panel">
+      <h3 class="panel-title">📋 Course Curriculum</h3>
+      <div class="curriculum-list" id="curriculum-list">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div id="ctab-overview" class="course-tab-panel">
+      <h3 class="panel-title">📖 Course Overview</h3>
+      <div class="overview-grid">
+        <div class="overview-left" id="overview-left">
+          <!-- injected by JS -->
+        </div>
+        <div class="overview-right">
+          <div class="what-learn" id="what-learn">
+            <!-- injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <strong>LearnSpark</strong>
+        <p>The smartest way to learn online.</p>
+      </div>
+      <p class="footer-copy">© 2026 LearnSpark. Built for learners.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/course.js"></script>
+</body>
+</html>

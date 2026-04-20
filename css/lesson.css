@@ -1,0 +1,833 @@
+/* ================================
+   LearnSpark - lesson.css
+================================ */
+
+body#lesson-body {
+  background: var(--bg);
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ---- TOP BAR ---- */
+.lesson-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 100;
+  gap: 1rem;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.back-btn {
+  width: 34px; height: 34px;
+  background: var(--card2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  transition: background var(--t);
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: rgba(168,85,247,0.15);
+  color: var(--accent2);
+}
+
+.topbar-info span   { display: block; font-size: 0.7rem; color: var(--muted); }
+.topbar-info strong { display: block; font-size: 0.85rem; font-weight: 600; }
+
+.topbar-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 400px;
+}
+
+.lesson-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#lesson-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+#topbar-progress { font-size: 0.68rem; color: var(--muted); }
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Pomodoro mini */
+.pomo-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color var(--t);
+  user-select: none;
+}
+
+.pomo-mini i { color: var(--accent2); font-size: 0.85rem; }
+
+.pomo-mini:hover { border-color: var(--accent2); }
+
+.pomo-mini button {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0 2px;
+}
+
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.8rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.topbar-btn:hover,
+.topbar-btn.active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(168,85,247,0.1);
+}
+
+/* ---- LAYOUT ---- */
+.lesson-layout {
+  display: flex;
+  height: calc(100vh - 56px);
+  margin-top: 56px;
+}
+
+/* ---- LESSON SIDEBAR ---- */
+.lesson-sidebar {
+  width: 260px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  flex-shrink: 0;
+  transition: transform var(--t);
+}
+
+.sidebar-header {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--bg2);
+  z-index: 2;
+}
+
+.sidebar-header h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sidebar-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  display: none;
+  font-size: 1rem;
+  transition: color var(--t);
+}
+
+.sidebar-close:hover { color: var(--text); }
+
+.lesson-list { padding: 0.8rem; }
+
+.lesson-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background var(--t);
+  margin-bottom: 2px;
+}
+
+.lesson-list-item:hover     { background: rgba(255,255,255,0.05); }
+.lesson-list-item.active    { background: rgba(168,85,247,0.12); }
+.lesson-list-item.active .lli-title { color: var(--accent2); }
+
+.lli-icon {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  background: var(--card2);
+  color: var(--muted);
+}
+
+.lli-icon.done   { background: rgba(34,197,94,0.15);  color: var(--green); }
+.lli-icon.active { background: rgba(168,85,247,0.15); color: var(--accent2); }
+
+.lli-info  { flex: 1; min-width: 0; }
+.lli-title { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.8); line-height: 1.3; }
+.lli-dur   { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+
+/* ---- LESSON MAIN ---- */
+.lesson-main {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.content-area { flex: 1; }
+
+.mode-panel        { display: none; }
+.mode-panel.active { display: block; }
+
+/* ---- VIDEO WRAP ---- */
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  background: #000;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* this is the key fix — iframe fills 100% and pointer-events works */
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  pointer-events: all;
+}
+
+/* Timestamp notes */
+.timestamp-notes {
+  padding: 1.2rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.tn-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tn-header h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tn-header h4 i { color: var(--yellow); }
+
+.btn-add-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.25);
+  color: var(--yellow);
+  border-radius: 7px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--t);
+}
+
+.btn-add-note:hover { background: rgba(245,158,11,0.18); }
+
+.notes-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.no-notes   { font-size: 0.82rem; color: var(--muted); }
+
+.note-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: var(--card2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+}
+
+.note-timestamp {
+  background: rgba(245,158,11,0.15);
+  color: var(--yellow);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.note-text {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.75);
+  flex: 1;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.note-delete {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: color var(--t);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.note-delete:hover { color: var(--red); }
+
+/* note input row */
+.note-input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.note-input-row input {
+  flex: 1;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--t);
+}
+
+.note-input-row input:focus   { border-color: var(--yellow); }
+.note-input-row input::placeholder { color: var(--muted); }
+
+.note-save-btn {
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: var(--yellow);
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--t);
+  white-space: nowrap;
+}
+
+.note-save-btn:hover { background: rgba(245,158,11,0.25); }
+
+/* ---- READING MODE ---- */
+.reading-content {
+  padding: 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.reading-content h2 {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.reading-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.6rem;
+  color: var(--accent2);
+}
+
+.reading-content p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.85;
+  margin-bottom: 1rem;
+}
+
+.reading-content code {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  font-family: monospace;
+}
+
+.reading-content pre {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.reading-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.87rem;
+}
+
+/* Lesson nav buttons */
+.lesson-nav-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ---- AI SIDEBAR ---- */
+.ai-sidebar {
+  width: 300px;
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.ai-header {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.ai-avatar {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.ai-header strong { display: block; font-size: 0.85rem; font-weight: 600; }
+.ai-header span   { font-size: 0.72rem; color: var(--muted); }
+
+.ai-close-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  margin-left: auto;
+  font-size: 0.9rem;
+  padding: 0.2rem;
+  transition: color var(--t);
+}
+
+.ai-close-btn:hover { color: var(--text); }
+
+/* messages */
+.ai-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ai-messages::-webkit-scrollbar       { width: 4px; }
+.ai-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+.ai-msg  { display: flex; }
+.bot-msg { justify-content: flex-start; }
+.user-msg{ justify-content: flex-end; }
+
+.msg-bubble {
+  max-width: 85%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.83rem;
+  line-height: 1.55;
+}
+
+.bot-msg .msg-bubble {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+  color: rgba(255,255,255,0.85);
+}
+
+.user-msg .msg-bubble {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-typing .msg-bubble::after {
+  content: '...';
+  animation: typing 1s infinite;
+}
+
+@keyframes typing {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1;   }
+}
+
+/* AI input */
+.ai-input-area {
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ai-input-area input {
+  flex: 1;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  color: var(--text);
+  font-size: 0.83rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--t);
+}
+
+.ai-input-area input:focus       { border-color: var(--accent2); }
+.ai-input-area input::placeholder{ color: var(--muted); }
+
+.ai-send-btn {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: transform var(--t), box-shadow var(--t);
+  flex-shrink: 0;
+}
+
+.ai-send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124,58,237,0.4);
+}
+
+/* FAB buttons */
+.ai-fab,
+.sidebar-fab {
+  position: fixed;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 200;
+  transition: transform var(--t);
+}
+
+.ai-fab:hover,
+.sidebar-fab:hover { transform: scale(1.08); }
+
+.ai-fab {
+  bottom: 1.5rem; right: 1.5rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.sidebar-fab {
+  bottom: 1.5rem; left: 1.5rem;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+/* ---- POMODORO OVERLAY ---- */
+.pomo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+
+.pomo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  min-width: 300px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.pomo-mode-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.pomo-timer {
+  font-family: var(--font-head);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+  line-height: 1;
+}
+
+.pomo-progress {
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+#pomo-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 10px;
+  transition: width 1s linear;
+}
+
+.pomo-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pomo-controls button {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(168,85,247,0.15);
+  border: 1.5px solid rgba(168,85,247,0.3);
+  color: var(--accent2);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: inherit;
+}
+
+.pomo-controls button:hover {
+  background: rgba(168,85,247,0.28);
+  transform: scale(1.05);
+}
+
+.pomo-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.pomo-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 7px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--t);
+}
+
+.pomo-close:hover { border-color: var(--text); color: var(--text); }
+
+/* ---- BADGE POPUP ---- */
+.badge-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 600;
+}
+
+.badge-popup-inner {
+  background: var(--card);
+  border: 1px solid rgba(245,158,11,0.35);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  min-width: 280px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(245,158,11,0.1);
+  animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.badge-popup-icon { font-size: 4rem; margin-bottom: 0.8rem; }
+
+.badge-popup-inner h3 {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.badge-popup-inner p {
+  color: var(--yellow);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- FOCUS MODE ---- */
+body.focus-mode .lesson-sidebar,
+body.focus-mode .ai-sidebar,
+body.focus-mode .topbar-left,
+body.focus-mode .topbar-center { display: none !important; }
+
+body.focus-mode .lesson-topbar {
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+body.focus-mode #focus-btn {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(168,85,247,0.1);
+}
+
+/* ================================
+   LESSON RESPONSIVE
+================================ */
+@media (max-width: 1100px) {
+  .ai-sidebar { display: none; }
+  .ai-fab     { display: flex; }
+
+  .ai-sidebar.open {
+    display: flex;
+    position: fixed;
+    right: 0; top: 56px;
+    height: calc(100vh - 56px);
+    z-index: 300;
+    width: 290px;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .lesson-sidebar { display: none; }
+  .sidebar-fab    { display: flex; }
+
+  .lesson-sidebar.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0; top: 56px;
+    height: calc(100vh - 56px);
+    z-index: 300;
+    width: 260px;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+  }
+
+  .sidebar-close  { display: block; }
+
+  .topbar-right   { gap: 0.3rem; }
+  .pomo-mini      { display: none; }
+  .topbar-btn span{ display: none; }
+  .topbar-btn     { padding: 0.35rem 0.5rem; }
+
+  .lesson-nav-btns { padding: 0.8rem 1rem; gap: 0.5rem; }
+  .lesson-nav-btns button { font-size: 0.8rem; padding: 0.6rem 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .lesson-topbar    { padding: 0 0.8rem; gap: 0.5rem; }
+  .topbar-info strong { font-size: 0.75rem; }
+  .topbar-info span   { display: none; }
+  .reading-content  { padding: 1.2rem; }
+  .pomo-timer       { font-size: 3rem; }
+  .lesson-nav-btns  { flex-wrap: wrap; }
+  .lesson-nav-btns button { flex: 1; justify-content: center; }
+}

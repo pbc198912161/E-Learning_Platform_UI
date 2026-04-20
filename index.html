@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LearnSpark | Modern E-Learning Platform</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">⚡</span> LearnSpark
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn-nav">Go to Dashboard</a>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob b1"></div>
+      <div class="hero-blob b2"></div>
+      <div class="hero-blob b3"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">🚀 Next-Gen Learning Platform</div>
+        <h1>Learn Smarter.<br /><span>Not Harder.</span></h1>
+        <p>
+          LearnSpark is not just another course platform. With AI-powered study
+          companions, focus mode, streak tracking, and micro-badges — it's the
+          most intelligent way to learn online.
+        </p>
+        <div class="hero-actions">
+          <a href="#courses" class="btn-primary">Explore Courses</a>
+          <a href="dashboard.html" class="btn-ghost">My Dashboard →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="h-stat">
+            <strong>50+</strong><span>Courses</span>
+          </div>
+          <div class="h-divider"></div>
+          <div class="h-stat">
+            <strong>10K+</strong><span>Learners</span>
+          </div>
+          <div class="h-divider"></div>
+          <div class="h-stat">
+            <strong>14</strong><span>Unique Features</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card hc1">
+          <i class="fas fa-fire"></i>
+          <div>
+            <strong>7 Day Streak!</strong>
+            <span>Keep it up 🔥</span>
+          </div>
+        </div>
+        <div class="hero-card hc2">
+          <i class="fas fa-brain"></i>
+          <div>
+            <strong>AI Companion</strong>
+            <span>Ready to help</span>
+          </div>
+        </div>
+        <div class="hero-card hc3">
+          <i class="fas fa-trophy"></i>
+          <div>
+            <strong>Badge Earned!</strong>
+            <span>Quiz Master 🏆</span>
+          </div>
+        </div>
+        <div class="hero-phone">
+          <div class="phone-screen">
+            <div class="phone-progress-bar"></div>
+            <div class="phone-video-thumb">
+              <i class="fas fa-play-circle"></i>
+              <span>JavaScript Basics</span>
+            </div>
+            <div class="phone-badges">
+              <span>🥇</span><span>🔥</span><span>⭐</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIQUE FEATURES SECTION -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">What Makes Us Different</span>
+        <h2>Features you won't find<br /><span>anywhere else</span></h2>
+      </div>
+      <div class="features-grid">
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(168,85,247,0.15); color:#a855f7;">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>AI Study Companion</h3>
+          <p>Ask questions about your current lesson and get instant AI-powered answers without leaving the page.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(6,182,212,0.15); color:#06b6d4;">
+            <i class="fas fa-crosshairs"></i>
+          </div>
+          <h3>Focus Mode</h3>
+          <p>One click removes all distractions. Just you, the video, and your notes. Full screen. Zero noise.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
+            <i class="fas fa-bookmark"></i>
+          </div>
+          <h3>Timestamp Notes</h3>
+          <p>Pin notes at exact video moments. Click any note to jump back to that point instantly.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(239,68,68,0.15); color:#ef4444;">
+            <i class="fas fa-fire"></i>
+          </div>
+          <h3>Daily Streak</h3>
+          <p>Build a daily learning habit with streak tracking. Lose a day — lose your streak. Stay consistent.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(34,197,94,0.15); color:#22c55e;">
+            <i class="fas fa-smile"></i>
+          </div>
+          <h3>Mood-Based Suggestions</h3>
+          <p>Tell us how you feel today. We recommend the right course type — short or deep — based on your mood.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(124,58,237,0.15); color:#7c3aed;">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3>Micro-Badges</h3>
+          <p>Earn badges at every milestone — not just the end. First lesson, halfway through, quiz master and more.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(6,182,212,0.15); color:#06b6d4;">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Learning Analytics</h3>
+          <p>See your weekly hours, strongest topics, average quiz scores and completion rates at a glance.</p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Pomodoro Timer</h3>
+          <p>Built-in 25/5 Pomodoro timer that auto-pauses your video on break and resumes when you're back.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MOOD PICKER (interactive) -->
+  <section class="mood-section">
+    <div class="container">
+      <div class="mood-box">
+        <div class="mood-left">
+          <h3>How are you feeling today?</h3>
+          <p>We'll suggest the best courses for your current mood.</p>
+          <div class="mood-options">
+            <button class="mood-btn" onclick="pickMood(this,'focused')"   data-mood="focused">   🎯 Focused</button>
+            <button class="mood-btn" onclick="pickMood(this,'motivated')" data-mood="motivated"> 🚀 Motivated</button>
+            <button class="mood-btn" onclick="pickMood(this,'tired')"     data-mood="tired">     😴 Tired</button>
+            <button class="mood-btn" onclick="pickMood(this,'stressed')"  data-mood="stressed">  😤 Stressed</button>
+          </div>
+        </div>
+        <div class="mood-right">
+          <div id="mood-suggestion" class="mood-suggestion hidden">
+            <div class="mood-suggestion-icon" id="mood-icon">🎯</div>
+            <h4 id="mood-title">Great for focus!</h4>
+            <p id="mood-desc">Since you're focused, we recommend deep-dive courses today.</p>
+            <a href="#courses" class="btn-primary" style="margin-top:1rem;">
+              Show Me Courses
+            </a>
+          </div>
+          <div class="mood-placeholder" id="mood-placeholder">
+            <i class="fas fa-hand-pointer"></i>
+            <span>Pick a mood to get started</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES SECTION -->
+  <section id="courses" class="courses-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">What Do You Want to Learn?</span>
+        <h2>Browse <span>All Courses</span></h2>
+      </div>
+
+      <!-- Search + Filter -->
+      <div class="course-controls">
+        <div class="search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-input" placeholder="Search courses..." oninput="filterCourses()" />
+        </div>
+        <div class="filter-tabs" id="filter-tabs">
+          <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+          <button class="filter-btn" onclick="setFilter(this,'webdev')">Web Dev</button>
+          <button class="filter-btn" onclick="setFilter(this,'python')">Python</button>
+          <button class="filter-btn" onclick="setFilter(this,'ai')">AI & ML</button>
+          <button class="filter-btn" onclick="setFilter(this,'design')">Design</button>
+          <button class="filter-btn" onclick="setFilter(this,'cyber')">Cybersecurity</button>
+        </div>
+      </div>
+
+      <!-- Course Grid -->
+      <div class="course-grid" id="course-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">⚡</span>
+        <strong>LearnSpark</strong>
+        <p>The smartest way to learn online.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#courses">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#features">Features</a>
+      </div>
+      <p class="footer-copy">© 2026 LearnSpark. Built for learners.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

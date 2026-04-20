@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson | LearnSpark</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/lesson.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body id="lesson-body">
+
+  <!-- TOP BAR -->
+  <div class="lesson-topbar" id="lesson-topbar">
+    <div class="topbar-left">
+      <a href="course.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="topbar-info">
+        <span id="topbar-course">Course Name</span>
+        <strong id="topbar-lesson">Lesson Title</strong>
+      </div>
+    </div>
+    <div class="topbar-center">
+      <div class="lesson-progress-bar">
+        <div id="lesson-progress-fill" style="width:0%"></div>
+      </div>
+      <span id="topbar-progress">0 / 0 lessons</span>
+    </div>
+    <div class="topbar-right">
+      <!-- Pomodoro -->
+      <div class="pomo-mini" id="pomo-mini" title="Pomodoro Timer" onclick="openPomo()">
+        <i class="fas fa-clock"></i>
+        <span id="pomo-display">25:00</span>
+        <button onclick="event.stopPropagation(); togglePomo()" id="pomo-toggle-btn">▶</button>
+      </div>
+      <!-- Focus mode -->
+      <button class="topbar-btn" onclick="toggleFocus()" id="focus-btn" title="Focus Mode">
+        <i class="fas fa-crosshairs"></i> <span>Focus</span>
+      </button>
+      <!-- Reading mode toggle -->
+      <button class="topbar-btn" onclick="toggleMode()" id="mode-btn" title="Toggle Reading Mode">
+        <i class="fas fa-book"></i> <span>Read Mode</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- LESSON LAYOUT -->
+  <div class="lesson-layout" id="lesson-layout">
+
+    <!-- LEFT: LESSON LIST -->
+    <aside class="lesson-sidebar" id="lesson-sidebar">
+      <div class="sidebar-header">
+        <h4 id="sidebar-course-name">Course</h4>
+        <button class="sidebar-close" onclick="closeSidebar()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="lesson-list" id="lesson-list">
+        <!-- injected by JS -->
+      </div>
+    </aside>
+
+    <!-- CENTER: VIDEO + NOTES -->
+    <main class="lesson-main" id="lesson-main">
+
+      <div class="content-area" id="content-area">
+
+        <!-- VIDEO MODE -->
+        <div id="video-mode" class="mode-panel active">
+          <div class="video-wrap">
+            <iframe
+              id="lesson-iframe"
+              src="https://www.youtube.com/embed/PkZNo7MFNFg?rel=0&modestbranding=1&enablejsapi=1"
+              title="Lesson Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Timestamp Notes -->
+          <div class="timestamp-notes">
+            <div class="tn-header">
+              <h4><i class="fas fa-bookmark"></i> Timestamp Notes</h4>
+              <button class="btn-add-note" onclick="addTimestampNote()">
+                <i class="fas fa-plus"></i> Add Note Here
+              </button>
+            </div>
+            <div id="notes-list" class="notes-list">
+              <p class="no-notes">No notes yet. Click "Add Note Here" while watching!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- READING MODE -->
+        <div id="reading-mode" class="mode-panel">
+          <div class="reading-content" id="reading-content">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Lesson navigation -->
+      <div class="lesson-nav-btns">
+        <button class="btn-ghost" onclick="prevLesson()" id="prev-btn">
+          <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <button class="btn-primary" onclick="markComplete()" id="complete-btn">
+          <i class="fas fa-check"></i> Mark Complete
+        </button>
+        <button class="btn-primary" onclick="nextLesson()" id="next-btn">
+          Next <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </main>
+
+    <!-- RIGHT: AI COMPANION -->
+    <aside class="ai-sidebar" id="ai-sidebar">
+
+      <div class="ai-header">
+        <div class="ai-avatar">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div>
+          <strong>AI Study Companion</strong>
+          <span>Ask me anything about this lesson</span>
+        </div>
+        <button class="ai-close-btn" onclick="toggleAI()" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="ai-messages" id="ai-messages">
+        <div class="ai-msg bot-msg">
+          <div class="msg-bubble">
+            👋 Hi! I'm your AI Study Companion. Ask me anything about this lesson — concepts, doubts, examples, anything!
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-input-area">
+        <input
+          type="text"
+          id="ai-input"
+          placeholder="Ask a question..."
+          onkeydown="if(event.key==='Enter') sendAIMessage()"
+        />
+        <button onclick="sendAIMessage()" class="ai-send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- AI toggle button (mobile) -->
+  <button class="ai-fab" id="ai-fab" onclick="toggleAI()" title="AI Companion">
+    <i class="fas fa-robot"></i>
+  </button>
+
+  <!-- Sidebar toggle button (mobile) -->
+  <button class="sidebar-fab" id="sidebar-fab" onclick="toggleSidebar()" title="Lessons">
+    <i class="fas fa-list"></i>
+  </button>
+
+  <!-- POMODORO OVERLAY -->
+  <div class="pomo-overlay hidden" id="pomo-overlay">
+    <div class="pomo-card">
+      <div class="pomo-mode-label" id="pomo-mode-label">🍅 Focus Time</div>
+      <div class="pomo-timer" id="pomo-timer-big">25:00</div>
+      <div class="pomo-progress">
+        <div id="pomo-progress-fill" style="width:0%"></div>
+      </div>
+      <div class="pomo-controls">
+        <button onclick="togglePomo()" id="pomo-play-btn">
+          <i class="fas fa-play"></i>
+        </button>
+        <button onclick="resetPomo()">
+          <i class="fas fa-redo"></i>
+        </button>
+      </div>
+      <p class="pomo-note" id="pomo-note">Stay focused. 25 minutes of deep work.</p>
+      <button class="pomo-close" onclick="closePomo()">Close</button>
+    </div>
+  </div>
+
+  <!-- BADGE POPUP -->
+  <div class="badge-popup hidden" id="badge-popup">
+    <div class="badge-popup-inner">
+      <div class="badge-popup-icon" id="badge-popup-icon">🏅</div>
+      <h3>Badge Unlocked!</h3>
+      <p id="badge-popup-name">First Step</p>
+      <button onclick="closeBadgePopup()" class="btn-primary">Awesome! 🎉</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/lesson.js"></script>
+</body>
+</html>

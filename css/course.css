@@ -1,0 +1,383 @@
+/* ================================
+   LearnSpark - course.css
+================================ */
+
+/* COURSE HERO */
+.course-hero {
+  padding: 100px 0 60px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb a { color: var(--muted); transition: color var(--t); }
+.breadcrumb a:hover { color: var(--accent2); }
+.breadcrumb i { font-size: 0.65rem; }
+
+.course-hero-content {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.course-category-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent2);
+  background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.2);
+  padding: 0.25rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+.course-hero-left h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+.course-hero-left p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.course-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.course-meta i { color: var(--accent2); }
+
+.course-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* progress card */
+.course-progress-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.8rem;
+  text-align: center;
+  position: sticky;
+  top: 80px;
+}
+
+.cp-header {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.cp-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1rem;
+}
+
+.cp-circle svg {
+  width: 120px; height: 120px;
+  transform: rotate(-90deg);
+}
+
+.cp-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.07);
+  stroke-width: 10;
+}
+
+.cp-fill {
+  fill: none;
+  stroke: url(#prog-grad);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 263.9;
+  stroke-dashoffset: 263.9;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.cp-circle span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent2);
+}
+
+.course-progress-card p {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ---- COURSE MAIN ---- */
+.course-main {
+  padding: 3rem 0;
+}
+
+.course-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+
+.ctab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all var(--t);
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: -1px;
+}
+
+.ctab:hover { color: var(--text); }
+
+.ctab.active {
+  color: var(--accent2);
+  border-bottom-color: var(--accent2);
+}
+
+.course-tab-panel { display: none; }
+.course-tab-panel.active { display: block; }
+
+.panel-title {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.panel-sub {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ---- ROADMAP ---- */
+.roadmap-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 1rem 0;
+}
+
+.roadmap-node-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.roadmap-node {
+  width: 260px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--t);
+  position: relative;
+}
+
+.roadmap-node.completed {
+  border-color: var(--green);
+  background: rgba(34,197,94,0.07);
+}
+
+.roadmap-node.current {
+  border-color: var(--accent2);
+  background: rgba(168,85,247,0.1);
+  box-shadow: 0 0 20px rgba(168,85,247,0.2);
+}
+
+.roadmap-node.locked {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.roadmap-node:hover:not(.locked) {
+  transform: scale(1.03);
+}
+
+.rn-icon { font-size: 1.6rem; margin-bottom: 0.4rem; }
+
+.rn-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.rn-status {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.roadmap-node.completed .rn-status { color: var(--green); }
+.roadmap-node.current  .rn-status  { color: var(--accent2); }
+
+/* connector line */
+.roadmap-connector {
+  width: 2px;
+  height: 32px;
+  background: var(--border);
+}
+
+.roadmap-connector.done { background: var(--green); }
+
+/* ---- CURRICULUM ---- */
+.curriculum-list { display: flex; flex-direction: column; gap: 0.7rem; }
+
+.cur-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color var(--t), background var(--t);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cur-item:hover { border-color: rgba(168,85,247,0.4); background: rgba(168,85,247,0.05); }
+
+.cur-item.completed { border-color: rgba(34,197,94,0.3); }
+
+.cur-num {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--card2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.cur-item.completed .cur-num {
+  background: rgba(34,197,94,0.15);
+  color: var(--green);
+}
+
+.cur-info { flex: 1; }
+.cur-info strong { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+.cur-info span   { font-size: 0.75rem; color: var(--muted); }
+
+.cur-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.cur-check { color: var(--green); font-size: 1rem; }
+.cur-lock  { color: var(--muted); font-size: 0.9rem; }
+
+/* ---- OVERVIEW ---- */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2.5rem;
+}
+
+.overview-left p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.what-learn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.what-learn h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.what-learn ul { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.what-learn li {
+  font-size: 0.87rem;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.what-learn li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ================================
+   COURSE RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .course-hero-content { grid-template-columns: 1fr; }
+  .course-progress-card { position: static; }
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .course-tabs   { overflow-x: auto; white-space: nowrap; }
+  .ctab          { padding: 0.7rem 0.9rem; font-size: 0.82rem; }
+  .roadmap-node  { width: 220px; }
+  .cur-meta      { display: none; }
+}
